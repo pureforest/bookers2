@@ -1,0 +1,62 @@
+<div>
+
+  <%#= image_tag @user.get_profile_image(100,100) %>
+  　           <table>
+　            <tbody>
+　             <tr></tr>
+             　<tr>
+　                <th>name</th>
+                  <th><%= @user.name %><th>
+               </tr>
+               <tr>
+　                <th>intoduction</th>
+                  <th><%= @user.body %><th>
+               </tr>
+              </tbody>
+              </table>
+  <% if @user == current_user %>
+    <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
+  <% end %>
+
+              <h1>New Book</h1>
+               <% if @book.errors.any? %>
+                 <%= @book.errors.count %>errors prohibited this book from being saved
+                 <ul>
+                 <% @book.errors.full_messages.each do |message| %>
+                 <li><%= message %></li>
+                 <% end %>
+                </ul>
+                <% end %>
+
+                <%= form_with model: @book do |f| %>
+                <div>
+                  <label>Title</label><br>
+                  <%= f.text_field :title %>
+                </div>
+                <div>
+                  <label>Opinion</label><br>
+                  <%= f.text_area :body %>
+                </div>
+                <div>
+                  <%= f.submit 'Create Book' %>
+                </div>
+                <% end %>
+
+
+<h1>Detail Books</h1>
+<P>
+  <strong>Title</strong>
+  <%= @book.title %>
+</P>
+
+<p>
+  <strong>Body</strong>
+  <%= @book.body %>
+</p>
+
+<%#= link_to 'Edit', edit_book_path(@book2.id) %>
+  |
+<%#= link_to 'Back', "/books" %>
+
+</div>
+

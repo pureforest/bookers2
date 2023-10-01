@@ -1,19 +1,29 @@
-<h1>Users</h1>
 
-<%= @users.each do |user| %>
-<table>
+<%= render 'layouts/sidebar' %>
+<div class="col-md-8">
+<h1>Users</h1>
+<table class="table table-striped">
+  <thead>
   <tr>
     <th>image</th>
     <th>name</th>
   </tr>
+  </thead>
+  <tbody>
+  <%= @users.each do |user| %>
   <tr>
-     <td><%= image_tag @user.get_profile_image(100,100) %></td>
-     <td><%= user.name %></td>
      <td>
-         <%= link_to 'Show', "/user/:id" %>
+        <%= image_tag @user.get_profile_image(100,100) %>
+       
+     </td>
+     <td>
+       <%= user.name %>
+     </td>
+     <td>
+         <%= link_to 'Show', user_path(user) %>
      </td>
   </tr>
+  <% end %>
+  </tbody>
 </table>
-       
-       
-<% end %>
+</div>

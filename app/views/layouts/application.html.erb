@@ -8,16 +8,15 @@
 
     <script src="https://kit.fontawesome.com/bb9908bf54.js" crossorigin="anonymous"></script>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%#= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body class="d-flex flex-column vh-100">>
    <header class="shadow-sm">
-     <nav class "navbar navbar-expand-lg navbar-dark">
+     <nav class="navbar navbar-dark bg-dark border-bottom border-bottom-dark" data-bs-theme="dark">
        <div class="container">
-       <a class="navbar-brand p-3" href="/">
-         <span>Bookers</span>
-       </a>
+       <%= link_to 'Bookers', root_path, class: 'navbar-brand' %>
 
        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -27,32 +26,64 @@
         <ul class="navbar-nav ml-auto">
          <% if user_signed_in? %>
           <li class="nav-item">
-          <%#= link_to 'Users', user_path(current_user.id) do %>
-           <!--<i class="fa-solid fa-users"></i>-->
-          <% #end %>
+          <%= link_to user_path(current_user.id), class: 'nav-link text-white px-3' do %>
+           <i class="fa-solid fa-home">Home</i>
+          <% end %>
           </li>
           <li class="nav-item">
-          <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %>
+                  <%= link_to users_path, class: 'nav-link text-white px-3' do %>
+                    <i class="fa-solid fa-users">Users</i> 
+                <% end %>
           </li>
+          <li class="nav-item">
+                <%= link_to books_path, class: 'nav-link text-white px-3' do %>
+                    <i class="fa-solid fa-book-open">Books</i>
+                <% end %>
+          </li>
+          <li class="nav-item">
+                <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link text-white px-3' do %>
+                    <i class="fa-solid fa-sign-out-alt">Log out</i>
+                <% end %>
+           </li>  
     <% else %>
-      <li class="nav-item">
-        <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-dark' %>
+      <li>
+        <%= link_to root_path, class:'px-3 text-white' do %>
+          <i class="fa-solid fa-home">Home</i>
+        <% end %>
       </li>
-      <li class="nav-item">
-        <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-dark' %>
-      </li>
+      <li>
+         <%= link_to about_path, class:'px-3 text-white' do %>
+            <i class="fa-solid fa-link">About</i>
+         <% end %>
+       </li>
+       <li>
+          <%= link_to new_user_registration_path, class:'px-3 text-white' do %>
+              <i class="fa-solid fa-sign-in-alt">Sign up</i>
+          <% end %>
+        </li>
+        <li>
+           <%= link_to new_user_session_path, class:'px-3 text-white' do %>
+               <i class="fa-solid fa-user-plus">Log in</i>
+           <% end %>
+        </li>
     <% end %>
     </ul>
     </div>
     </div>
     </nav>
-   </header>
-<main class="md-auto">
-    <%= yield %>
-</main>
+</header>
 
-<footer>
-   <p> CopyRight Infratop.inc </p>
+<% flash.each do |message_type, message| %>
+      <div><%= message %></div>
+<% end %>   
+<div class="container px-5 px-0">
+      <div class="row">
+        <%= yield %>
+      </div>
+</div>
+
+<footer class="mt-4">
+        <p class="text-center">CopyRight Infratop.inc</p>
 </footer>
-  </body>
+</body>
 </html>

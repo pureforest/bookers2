@@ -1,2 +1,41 @@
-<h1>Books#show</h1>
-<p>Find me in app/views/books/show.html.erb</p>
+<div class = "container">
+<div class = "row">
+<%= render 'layouts/sidebar' %>
+
+
+<div class="col-md-8">
+  <h1>Book detail</h1>
+  <table class="table table-striped">
+    <tbody>
+      <tr>
+        <td>
+          <%= link_to user_path(@find_book.user) do %>
+           <%= image_tag @find_book.user.get_profile_image(100,100) %>
+           <p><%= @user.name %></p>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to book_path(@find_book) do %>
+            <% @find_book.title %>
+          <% end %>
+        </td>
+        <td>
+          <%= @find_book.body %>
+        </td>
+        <td>
+          <% if @user == current_user %>
+            <%= link_to 'Edit', edit_book_path(@find_book), class: "btn btn-success" %>
+          <% end %>
+        </td>
+        <td>
+          <% if @user == current_user %>
+            <%= link_to 'Destroy', book_path(@find_book), class: "btn btn-warning", method: :delete,  "data-confirm" => "Are you sure?" %>
+          <% end %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>
+</div>
+

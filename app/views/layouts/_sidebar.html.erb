@@ -1,7 +1,8 @@
- 　    <div class="col-md-3">
+ 　    <!--<div class="col-md-3">-->
+ 　    <div>
 　        <h1>User info</h1>
 　             <%= image_tag @user.get_profile_image(100,100) %>
-　           <table> 
+　           <table class="table">
 　            <thead class="book-head">
              　<tr>
 　                <th>name</th>
@@ -18,7 +19,7 @@
                 <i class="fas fa-user-cog"></i>
               <%# end %>
               <% end %>
-              
+
              <h1>New book</h1>
                <% if @book.errors.any? %>
                  <%= @book.errors.count %>errors prohibited this book from being saved
@@ -28,7 +29,7 @@
                  <% end %>
                 </ul>
                 <% end %>
-                
+
                 <%= form_with model: @book, url: books_path, method: :post do |f| %>
                 <div>
                   <label>Title</label></br>
@@ -43,4 +44,3 @@
                 </div>
                 <% end %>
         </div>
-    

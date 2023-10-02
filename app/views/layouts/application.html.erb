@@ -11,8 +11,7 @@
     <%#= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
-  <body class="d-flex flex-column vh-100">>
+<body>
    <header class="shadow-sm">
      <nav class="navbar navbar-dark bg-dark border-bottom border-bottom-dark" data-bs-theme="dark">
        <div class="container">
@@ -32,7 +31,7 @@
           </li>
           <li class="nav-item">
                   <%= link_to users_path, class: 'nav-link text-white px-3' do %>
-                    <i class="fa-solid fa-users">Users</i> 
+                    <i class="fa-solid fa-users">Users</i>
                 <% end %>
           </li>
           <li class="nav-item">
@@ -44,7 +43,7 @@
                 <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link text-white px-3' do %>
                     <i class="fa-solid fa-sign-out-alt">Log out</i>
                 <% end %>
-           </li>  
+           </li>
     <% else %>
       <li>
         <%= link_to root_path, class:'px-3 text-white' do %>
@@ -72,15 +71,13 @@
     </div>
     </nav>
 </header>
-
+<main>
 <% flash.each do |message_type, message| %>
       <div><%= message %></div>
-<% end %>   
-<div class="container px-5 px-0">
-      <div class="row">
+<% end %>
+
         <%= yield %>
-      </div>
-</div>
+</main>
 
 <footer class="mt-4">
         <p class="text-center">CopyRight Infratop.inc</p>

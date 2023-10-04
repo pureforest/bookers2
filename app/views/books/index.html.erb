@@ -27,6 +27,18 @@
                      <% end %>
                    </td>
                    <td><%= book.body %></td>
+                   <td>
+                      <% if book.favorited_by?(current_user) %>
+                        <%= link_to book_favorites_path(book), method: :delete do %>
+                        <i class="fa-solid fa-heart"></i><%= book.favorites.count %>
+                      <% end %>
+                      <% else %>
+                        <%= link_to book_favorites_path(book), method: :post do %>
+                        <i class="fa-regular fa-heart"></i><%= book.favorites.count %>
+                      <% end %>
+                      <% end %>
+                   </td>
+                   <td>コメント数: <%= book.book_comments.count %></td>
                    <!--<td>-->
                    <!-- <%#= link_to 'Edit', edit_book_path(book) %>-->
                    <!--<%#= link_to 'Destroy', books_path, method: :delete, "data-confirm" => 'Are you sure?'  %>-->
